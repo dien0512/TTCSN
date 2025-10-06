@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.ud_quizzi.view.LoginController"
+            prefWidth="400" prefHeight="300">
+
+    <ImageView fx:id="loginView" fitWidth="400" fitHeight="300" layoutX="0" layoutY="0"/>
+
+    <Label text="Login Quizzi" layoutX="150" layoutY="30" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: blue"/>
+
+    <Label text="Username:" layoutX="50" layoutY="100" style="-fx-font-weight: bold; -fx-text-fill: blue"/>
+    <TextField fx:id="usernameField" layoutX="150" layoutY="95" prefWidth="200"/>
+
+    <Label text="Password:" layoutX="50" layoutY="150" style="-fx-font-weight: bold; -fx-text-fill: blue"/>
+    <PasswordField fx:id="passwordField" layoutX="150" layoutY="145" prefWidth="200"/>
+
+    <Button text="Login" layoutX="150" layoutY="200" prefWidth="100" onAction="#handleLogin"/>
+    <Label fx:id="messageLabel" layoutX="100" layoutY="250" style="-fx-text-fill: red;"/>
+</AnchorPane>
