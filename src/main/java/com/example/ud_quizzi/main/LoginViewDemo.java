@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class LoginViewDeMo extends Application {
+public class LoginViewDemo extends Application {
 
     @Override
     public void start(Stage primaryStage) {
@@ -15,7 +15,7 @@ public class LoginViewDeMo extends Application {
             FXMLLoader loader = new FXMLLoader();
 
             // 2️⃣ Chú ý đường dẫn: từ thư mục resources
-            loader.setLocation(getClass().getResource("/com/example/ud_quizzi/view/LoginView.fxml"));
+            loader.setLocation(getClass().getResource("/com/example/ud_quizzi/view/LoginScreen.fxml"));
 
             // 3️⃣ Load FXML
             Parent root = loader.load();

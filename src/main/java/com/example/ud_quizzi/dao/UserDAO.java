@@ -80,4 +80,14 @@ public class UserDAO {
                 rs.getString("role")
         );
     }
+
+    // Kiem tra xem user da ton tai hay chua
+    public boolean existsUsername(String username) throws SQLException {
+        String sql = "SELECT * FROM Users WHERE username=?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        }
+    }
 }

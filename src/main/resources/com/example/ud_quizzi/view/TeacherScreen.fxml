@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.ud_quizzi.view.TeacherController"
+      spacing="20" alignment="CENTER">
+
+    <Label text="Teacher Dashboard" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+    <VBox spacing="15" alignment="CENTER">
+        <Button text="Manage Questions" onAction="#handleManageQuestions" prefWidth="200"/>
+        <Button text="Manage Exams" onAction="#handleManageExams" prefWidth="200"/>
+        <Button text="Manage Results" onAction="#handleManageResults" prefWidth="200"/>
+        <Button text="Logout" onAction="#handleLogout" prefWidth="200"/>
+    </VBox>
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+</VBox>

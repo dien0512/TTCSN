@@ -58,4 +58,28 @@ public class UserController {
             return false;
         }
     }
+
+    // Kiem tra xem username da ton tai chua
+    public boolean usernameExists(String username) {
+        try {
+            return userDAO.existsUsername(username);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return true; // coi như tồn tại nếu lỗi DB
+        }
+    }
+
+    public boolean registerUser(String username, String password, String fullName,
+                                String email, String phone, String role) {
+        try {
+            if (usernameExists(username)) {
+                return false; // username đã tồn tại
+            }
+            User user = new User(0, username, password, fullName, email, phone, role);
+            return userDAO.insert(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

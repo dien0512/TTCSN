@@ -2,6 +2,7 @@ package com.example.ud_quizzi.controller;
 
 import com.example.ud_quizzi.dao.QuestionDAO;
 import com.example.ud_quizzi.model.Question;
+import javafx.event.ActionEvent;
 
 import java.sql.Connection;
 import java.sql.SQLException;

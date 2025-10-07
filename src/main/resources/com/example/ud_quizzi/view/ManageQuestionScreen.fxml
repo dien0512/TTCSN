@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.ud_quizzi.view.ManageQuestionController"
+            prefWidth="600" prefHeight="400">
+
+    <VBox spacing="10" alignment="TOP_CENTER"
+          AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10"
+          AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+
+        <Label text="Manage Questions" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+        <TableView fx:id="tableQuestions" prefHeight="250" prefWidth="580" >
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="colContent" text="Content" prefWidth="450"/>
+                <TableColumn fx:id="colAnswer" text="Answer" prefWidth="80"/>
+            </columns>
+        </TableView>
+        
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Add" onAction="#handleAdd" prefWidth="100"/>
+            <Button text="Delete" onAction="#handleDelete" prefWidth="100"/>
+        </HBox>
+
+    </VBox>
+</AnchorPane>

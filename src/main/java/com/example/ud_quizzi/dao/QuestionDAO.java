@@ -14,7 +14,7 @@ public class QuestionDAO {
     }
 
     public boolean insert(Question q) throws SQLException {
-        String sql = "INSERT INTO Questions(content, option_a, option_b, option_c, option_d, answer) VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO Question(content, option_a, option_b, option_c, option_d, answer) VALUES(?,?,?,?,?,?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, q.getContent());
             ps.setString(2, q.getOptionA());
@@ -28,7 +28,7 @@ public class QuestionDAO {
 
     public List<Question> getAll() throws SQLException {
         List<Question> list = new ArrayList<>();
-        String sql = "SELECT * FROM Questions";
+        String sql = "SELECT * FROM Question";
         try (Statement st = conn.createStatement(); ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) list.add(map(rs));
         }
@@ -36,7 +36,7 @@ public class QuestionDAO {
     }
 
     public Question getById(int id) throws SQLException {
-        String sql = "SELECT * FROM Questions WHERE question_id=?";
+        String sql = "SELECT * FROM Question WHERE question_id=?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -46,7 +46,7 @@ public class QuestionDAO {
     }
 
     public boolean deleteById(int id) throws SQLException {
-        String sql = "DELETE FROM Questions WHERE question_id=?";
+        String sql = "DELETE FROM Question WHERE question_id=?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             return ps.executeUpdate() > 0;

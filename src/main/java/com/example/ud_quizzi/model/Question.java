@@ -15,7 +15,7 @@ public class Question implements Serializable {
     private String optionD;
     private String answer; // "A", "B", "C", "D"
 
-    public Question() {
+    public Question(int i, String content, String answer) {
     }
 
     public Question(int questionID, String content, String optionA, String optionB, String optionC, String optionD,
