@@ -29,17 +29,29 @@ public class LoginController {
     private Label messageLabel;
 
     @FXML
-    private ImageView loginForm; // phải match với fx:id
+    private ImageView backgroundImage;
+
+    @FXML
+    private ImageView sideImage;
 
     @FXML
     private void initialize() {
-        URL url = getClass().getResource("/images/loginImage.png");
-        if (url != null) {
-            loginForm.setImage(new Image(url.toExternalForm()));
+        URL bgUrl = getClass().getResource("/images/backgroundLogin.png");
+        URL sideUrl = getClass().getResource("/images/loginImage.png");
+
+        if (bgUrl != null) {
+            backgroundImage.setImage(new Image(bgUrl.toExternalForm()));
+        } else {
+            System.out.println("Không tìm thấy backgroundLogin.png");
+        }
+
+        if (sideUrl != null) {
+            sideImage.setImage(new Image(sideUrl.toExternalForm()));
         } else {
             System.out.println("Không tìm thấy loginImage.png");
         }
     }
+
 
     @FXML
     private void handleLogin() {
@@ -67,15 +79,15 @@ public class LoginController {
                 try {
                     FXMLLoader loader;
                     if ("teacher".equals(user.getRole())) {
-                        loader = new FXMLLoader(getClass().getResource("/com/example/ud_quizzi/view/TeacherForm.fxml"));
+                        loader = new FXMLLoader(getClass().getResource("/com/example/ud_quizzi/view/TeacherScreen.fxml"));
                     } else { // student
-                        loader = new FXMLLoader(getClass().getResource("/com/example/ud_quizzi/view/StudentForm.fxml"));
+                        loader = new FXMLLoader(getClass().getResource("/com/example/ud_quizzi/view/StudentScreen.fxml"));
                     }
 
                     Parent root = loader.load();
                     Stage stage = (Stage) usernameField.getScene().getWindow();
                     stage.setScene(new Scene(root));
-                    stage.setTitle("Main Screen");
+                    stage.setTitle("Login Screen");
                     stage.show();
 
                 } catch (Exception ex) {

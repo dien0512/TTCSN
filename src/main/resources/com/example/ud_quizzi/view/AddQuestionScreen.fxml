@@ -59,6 +59,8 @@
     <HBox spacing="20" alignment="CENTER" GridPane.rowIndex="7" GridPane.columnIndex="0" GridPane.columnSpan="2">
         <Button text="Add" onAction="#handleAdd" prefWidth="120"
                 style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;"/>
+        <Button text="Back" onAction="#handleBack" prefWidth="120"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;"/>
     </HBox>
 
     <!-- Message Label -->

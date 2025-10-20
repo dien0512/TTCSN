@@ -21,10 +21,11 @@
                 <TableColumn fx:id="colAnswer" text="Answer" prefWidth="80"/>
             </columns>
         </TableView>
-        
+
         <HBox spacing="10" alignment="CENTER">
             <Button text="Add" onAction="#handleAdd" prefWidth="100"/>
             <Button text="Delete" onAction="#handleDelete" prefWidth="100"/>
+            <Button text="Back" onAction="#handleBack" prefWidth="100"/>
         </HBox>
 
     </VBox>

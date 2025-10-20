@@ -1,97 +1,36 @@
-package com.example.ud_quizzi.view;
+package com.example.ud_quizzi.main;
 
-import com.example.ud_quizzi.controller.QuestionController;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.sql.Connection;
+public class AddQuestionViewDemo extends Application {
 
-public class AddQuestionController {
+    @Override
+    public void start(Stage primaryStage) {
+        try {
+            // 1️⃣ Tạo FXMLLoader và load FXML
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/com/example/ud_quizzi/view/AddQuestionScreen.fxml"));
 
-    @FXML
-    private TextField contentField;
-    @FXML
-    private TextField optionAField;
-    @FXML
-    private TextField optionBField;
-    @FXML
-    private TextField optionCField;
-    @FXML
-    private TextField optionDField;
-    @FXML
-    private TextField answerField;
-    @FXML
-    private Label messageLabel;
+            // 2️⃣ Load giao diện từ file FXML
+            Parent root = loader.load();
 
-    private QuestionController questionController;
-    private ManageQuestionController manageController;
+            // 3️⃣ Tạo Scene từ FXML
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Thêm Câu Hỏi - Quizzi");
+            primaryStage.show();
 
-    @FXML
-    private void initialize() {
-        messageLabel.setText("");
-    }
-
-    public void setManageController(ManageQuestionController controller) {
-        this.manageController = controller;
-    }
-
-    public void setConnection(Connection conn) {
-        this.questionController = new QuestionController(conn);
-    }
-
-    @FXML
-    private void handleAdd() {
-        if (questionController == null) {
-            messageLabel.setText("❌ Chưa kết nối CSDL!");
-            return;
-        }
-
-        String content = contentField.getText().trim();
-        String optionA = optionAField.getText().trim();
-        String optionB = optionBField.getText().trim();
-        String optionC = optionCField.getText().trim();
-        String optionD = optionDField.getText().trim();
-        String answer = answerField.getText().trim().toUpperCase();
-
-        // ✅ Kiểm tra đầu vào
-        if (content.isEmpty() || optionA.isEmpty() || optionB.isEmpty()
-                || optionC.isEmpty() || optionD.isEmpty() || answer.isEmpty()) {
-            messageLabel.setText("⚠️ Vui lòng điền đầy đủ thông tin!");
-            return;
-        }
-
-        if (!answer.matches("[ABCD]")) {
-            messageLabel.setText("⚠️ Đáp án phải là A, B, C hoặc D!");
-            return;
-        }
-
-        boolean success = questionController.addQuestion(content, optionA, optionB, optionC, optionD, answer);
-
-        if (success) {
-            messageLabel.setText("✅ Thêm câu hỏi thành công!");
-            clearFields();
-            if (manageController != null) {
-                manageController.refreshTable(); // 🔁 làm mới danh sách nếu cần
-            }
-        } else {
-            messageLabel.setText("❌ Thêm câu hỏi thất bại!");
+        } catch (Exception e) {
+            // 4️⃣ Bắt lỗi khi FXML không tìm thấy hoặc có lỗi trong file
+            e.printStackTrace();
         }
     }
 
-    @FXML
-    private void handleBack(ActionEvent event) {
-        Stage currentStage = (Stage) contentField.getScene().getWindow();
-        currentStage.close();
-    }
-
-    private void clearFields() {
-        contentField.clear();
-        optionAField.clear();
-        optionBField.clear();
-        optionCField.clear();
-        optionDField.clear();
-        answerField.clear();
+    public static void main(String[] args) {
+        launch(args); // ⚡ Chạy JavaFX
     }
 }

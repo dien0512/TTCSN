@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -43,7 +44,7 @@ public class TeacherController {
             Parent root = loader.load();
 
             ManageQuestionController controller = loader.getController();
-            controller.setQuestionController(questionController);
+            controller.setConnection(questionController.getConnection());
 
             Stage stage = new Stage();
             stage.setTitle("Quản lý câu hỏi");
@@ -60,6 +61,27 @@ public class TeacherController {
     public void handleManageResults(ActionEvent actionEvent) {
     }
 
-    public void handleLogout(ActionEvent actionEvent) {
+    public void handleLogout(ActionEvent actionEvent) throws IOException {
+        try{
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ud_quizzi/view/TeacherScreen.fxml.fxml"));
+//            Parent root = loader.load();
+//
+//            ManageQuestionController controller = loader.getController();
+//            controller.setConnection(questionController.getConnection());
+//
+//            Stage stage = new Stage();
+//            stage.setTitle("Quản lý câu hỏi");
+//            stage.setScene(new Scene(root));
+//            stage.show();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ud_quizzi/view/LoginScreen.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Login");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }

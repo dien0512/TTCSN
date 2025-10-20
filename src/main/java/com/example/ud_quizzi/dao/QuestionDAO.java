@@ -64,4 +64,20 @@ public class QuestionDAO {
                 rs.getString("answer")
         );
     }
+
+    // Kiem tra xem question da ton tai hay chua
+    public boolean existsQuestion(String content, String answer) throws SQLException {
+        String sql = "SELECT * FROM Question WHERE content=? AND answer=?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, content);
+            ps.setString(2, answer);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        }
+    }
+
+    public Connection getConnection() {
+        return this.conn;
+    }
+
 }

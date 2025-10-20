@@ -4,6 +4,7 @@ module com.example.ud_quizzi {
     requires javafx.graphics;
     requires javafx.base;
     requires java.sql;
+    //requires com.example.ud_quizzi;
 
     // Mở cho FXML loader (chỉ view và controller)
     opens com.example.ud_quizzi.view to javafx.fxml;

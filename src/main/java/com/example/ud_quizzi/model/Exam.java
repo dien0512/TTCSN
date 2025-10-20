@@ -10,23 +10,26 @@ public class Exam implements Serializable {
     private static final long serialVersionUID = -8437516014569830746L;
     private int examID;
     private String examName;
-    private int createdBy; // userID của giáo viên tạo
+    private String createdBy; // userName của giáo viên tạo
     private Date createdDate;
+    private int testTime;
 
     public Exam() {
     }
 
-    public Exam(int examID, String examName, int createdBy, Date createdDate) {
+    public Exam(int examID, String examName, String createdBy, Date createdDate, int testTime) {
         this.examID = examID;
         this.examName = examName;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
+        this.testTime = testTime;
     }
 
-    public Exam(String examName, int createdBy, Date createdDate) {
+    public Exam(String examName, String createdBy, Date createdDate, int testTime) {
         this.examName = examName;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
+        this.testTime = testTime;
     }
 
     // Getters & Setters ...
@@ -39,6 +42,14 @@ public class Exam implements Serializable {
         this.examID = examID;
     }
 
+    public int getTestTime() {
+        return testTime;
+    }
+
+    public void setTestTime(int testTime) {
+        this.testTime = testTime;
+    }
+
     public String getExamName() {
         return examName;
     }
@@ -47,11 +58,11 @@ public class Exam implements Serializable {
         this.examName = examName;
     }
 
-    public int getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(int createdBy) {
+    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -66,6 +77,7 @@ public class Exam implements Serializable {
     @Override
     public String toString() {
         return "Exam [examID=" + examID + ", examName=" + examName + ", createdBy=" + createdBy + ", createdDate="
-                + createdDate + "]";
+                + createdDate + ", testTime="
+                + testTime + "]";
     }
 }
