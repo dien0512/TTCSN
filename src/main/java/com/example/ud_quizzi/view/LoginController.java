@@ -1,8 +1,8 @@
 package com.example.ud_quizzi.view;
 
 import com.example.ud_quizzi.controller.UserController;
-import com.example.ud_quizzi.dao.DatabaseConection;
-import javafx.event.ActionEvent;
+import com.example.ud_quizzi.dao.DatabaseConnection;
+import com.example.ud_quizzi.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -36,22 +36,19 @@ public class LoginController {
 
     @FXML
     private void initialize() {
-        URL bgUrl = getClass().getResource("/images/backgroundLogin.png");
-        URL sideUrl = getClass().getResource("/images/loginImage.png");
+        try {
+            URL bgUrl = getClass().getResource("/images/backgroundLogin.png");
+            URL sideUrl = getClass().getResource("/images/loginImage.png");
 
-        if (bgUrl != null) {
-            backgroundImage.setImage(new Image(bgUrl.toExternalForm()));
-        } else {
-            System.out.println("Không tìm thấy backgroundLogin.png");
-        }
+            if (bgUrl != null) backgroundImage.setImage(new Image(bgUrl.toExternalForm()));
+            else System.out.println("Không tìm thấy backgroundLogin.png");
 
-        if (sideUrl != null) {
-            sideImage.setImage(new Image(sideUrl.toExternalForm()));
-        } else {
-            System.out.println("Không tìm thấy loginImage.png");
+            if (sideUrl != null) sideImage.setImage(new Image(sideUrl.toExternalForm()));
+            else System.out.println("Không tìm thấy loginImage.png");
+        } catch (Exception e) {
+            System.out.println("Lỗi khi load hình ảnh: " + e.getMessage());
         }
     }
-
 
     @FXML
     private void handleLogin() {
@@ -59,68 +56,57 @@ public class LoginController {
         String password = passwordField.getText().trim();
 
         if (username.isEmpty() || password.isEmpty()) {
+            messageLabel.setStyle("-fx-text-fill: red;");
             messageLabel.setText("Vui lòng nhập đầy đủ thông tin!");
             return;
         }
 
-        try (Connection conn = DatabaseConection.getConnection()) {
+        try (Connection conn = DatabaseConnection.getConnection()) {
             if (conn == null) {
+                messageLabel.setStyle("-fx-text-fill: red;");
                 messageLabel.setText("Không thể kết nối database!");
                 return;
             }
 
             UserController userController = new UserController(conn);
-            com.example.ud_quizzi.model.User user = userController.login(username, password);
+            User user = userController.login(username, password);
 
             if (user != null) {
-                messageLabel.setText("Đăng nhập thành công");
+                messageLabel.setStyle("-fx-text-fill: green;");
+                messageLabel.setText("Đăng nhập thành công!");
 
-                // Chuyển màn hình theo role
+                // Chọn FXML theo role
+                String fxmlPath;
+                switch (user.getRole()) {
+                    case "teacher" -> fxmlPath = "/com/example/ud_quizzi/view/TeacherScreen.fxml";
+                    case "student" -> fxmlPath = "/com/example/ud_quizzi/view/StudentScreen.fxml";
+                    default -> fxmlPath = "/com/example/ud_quizzi/view/AdminScreen.fxml";
+                }
+
                 try {
-                    FXMLLoader loader;
-                    if ("teacher".equals(user.getRole())) {
-                        loader = new FXMLLoader(getClass().getResource("/com/example/ud_quizzi/view/TeacherScreen.fxml"));
-                    } else { // student
-                        loader = new FXMLLoader(getClass().getResource("/com/example/ud_quizzi/view/StudentScreen.fxml"));
-                    }
-
-                    Parent root = loader.load();
+                    Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
                     Stage stage = (Stage) usernameField.getScene().getWindow();
                     stage.setScene(new Scene(root));
-                    stage.setTitle("Login Screen");
+                    stage.sizeToScene();
+                    stage.centerOnScreen(); // căn giữa màn hình
+                    stage.setTitle("Dashboard - " + user.getRole());
                     stage.show();
 
                 } catch (Exception ex) {
                     ex.printStackTrace();
+                    messageLabel.setStyle("-fx-text-fill: red;");
                     messageLabel.setText("Lỗi khi mở màn hình chính!");
                 }
 
             } else {
+                messageLabel.setStyle("-fx-text-fill: red;");
                 messageLabel.setText("Sai username hoặc password!");
             }
+
         } catch (Exception e) {
             e.printStackTrace();
+            messageLabel.setStyle("-fx-text-fill: red;");
             messageLabel.setText("Lỗi khi kết nối database!");
-        }
-    }
-
-    @FXML
-    public void handleRegister(ActionEvent actionEvent) {
-        try {
-            // 1️⃣ Khởi tạo FXMLLoader và load FXML của màn hình chính
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ud_quizzi/view/RegisterScreen.fxml"));
-            Parent root = loader.load();
-
-            // 2️⃣ Lấy stage hiện tại
-            Stage stage = (Stage) usernameField.getScene().getWindow();
-
-            // 3️⃣ Thay scene mới và hiển thị
-            stage.setScene(new Scene(root));
-            stage.setTitle("Register Screen");
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }

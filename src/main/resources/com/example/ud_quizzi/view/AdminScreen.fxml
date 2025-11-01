@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.ud_quizzi.view.ManageQuestionController"
+            fx:controller="com.example.ud_quizzi.view.ManageUserController"
             prefWidth="930" prefHeight="550"
             style="-fx-background-color: linear-gradient(to bottom right, #f0f8ff, #e6f0ff);">
 
@@ -14,16 +15,21 @@
           AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20">
 
         <!-- Tiêu đề -->
-        <Label text="QUẢN LÍ CÂU HỎI"
+        <Label text="QUẢN LÍ NGƯỜI DÙNG"
                style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #1E90FF;"/>
 
         <!-- Bảng dữ liệu -->
-        <TableView fx:id="tableQuestions" prefHeight="400" prefWidth="960"
+        <TableView fx:id="tableUsers" prefHeight="400" prefWidth="960"
                    style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #87CEFA;">
+            <!-- Đặt resize policy trong controller, tránh lỗi FXML -->
             <columns>
-                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
-                <TableColumn fx:id="colContent" text="Content" prefWidth="650"/>
-                <TableColumn fx:id="colAnswer" text="Answer" prefWidth="150"/>
+                <TableColumn fx:id="colUserID" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="colUserName" text="UserName" prefWidth="150"/>
+                <TableColumn fx:id="colPassword" text="Password" prefWidth="150"/>
+                <TableColumn fx:id="colFullName" text="FullName" prefWidth="180"/>
+                <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
+                <TableColumn fx:id="colPhone" text="Phone" prefWidth="100"/>
+                <TableColumn fx:id="colRole" text="Role" prefWidth="80"/>
             </columns>
         </TableView>
 
@@ -37,7 +43,7 @@
                     style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-weight: bold;
                            -fx-background-radius: 10; -fx-font-size: 14px;"/>
 
-            <Button text="⬅ Trở lại" onAction="#handleBack" prefWidth="140" prefHeight="40"
+            <Button text="⬅ Đăng xuất" onAction="#handleLogout" prefWidth="140" prefHeight="40"
                     style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold;
                            -fx-background-radius: 10; -fx-font-size: 14px;"/>
         </HBox>

@@ -82,4 +82,13 @@ public class UserController {
             return false;
         }
     }
+
+    public boolean deleteUser(int id) {
+        try {
+            return userDAO.deleteById(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

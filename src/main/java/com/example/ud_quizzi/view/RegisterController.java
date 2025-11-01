@@ -25,36 +25,39 @@ public class RegisterController {
     @FXML private ChoiceBox<String> roleChoiceBox;
     @FXML private Label messageLabel;
 
-    private UserController userController; // controller logic
+    @FXML private ImageView registerForm; // fix fx:id match FXML
+
+    private UserController userController;
+
     private static final String DB_HOST = "LAPTOP";
     private static final String DB_INSTANCE = "MSSQLSERVER01";
-    private static final String DB_NAME = "QuizziDB";
+    private static final String DB_NAME = "UD_QUIZZI";
     private static final String DB_USER = "sa";
     private static final String DB_PASSWORD = "@Nhd05122005";
 
     @FXML
-    private ImageView RegisterForm; // phải match với fx:id
-
-    @FXML
     private void initialize() {
-        roleChoiceBox.getItems().addAll("teacher", "student");
+        // Init ChoiceBox
+        roleChoiceBox.getItems().addAll("teacher", "student", "admin");
         roleChoiceBox.setValue("teacher");
 
+        // Kết nối DB
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             String url = "jdbc:sqlserver://" + DB_HOST + "\\" + DB_INSTANCE +
-                    ";databaseName=" + DB_NAME +
-                    ";encrypt=true;trustServerCertificate=true;";
+                    ";databaseName=" + DB_NAME + ";encrypt=true;trustServerCertificate=true;";
             Connection conn = DriverManager.getConnection(url, DB_USER, DB_PASSWORD);
             userController = new UserController(conn);
+            System.out.println("✅ Kết nối CSDL thành công!");
         } catch (Exception e) {
             e.printStackTrace();
             messageLabel.setText("Kết nối DB thất bại!");
         }
 
+        // Load hình nền
         URL url = getClass().getResource("/images/registerImage.png");
         if (url != null) {
-            RegisterForm.setImage(new Image(url.toExternalForm()));
+            registerForm.setImage(new Image(url.toExternalForm()));
         } else {
             System.out.println("Không tìm thấy registerImage.png");
         }
@@ -62,6 +65,11 @@ public class RegisterController {
 
     @FXML
     private void handleRegister() {
+        if(userController == null) {
+            messageLabel.setText("DB chưa kết nối!");
+            return;
+        }
+
         String username = usernameField.getText().trim();
         String password = passwordField.getText().trim();
         String fullName = fullNameField.getText().trim();
@@ -81,9 +89,35 @@ public class RegisterController {
             messageLabel.setText("Đăng ký thành công!");
             clearFields();
         } else {
-            messageLabel.setText("Đăng ký thất bại! Username có thể đã tồn tại.");
+            boolean exists = userController.usernameExists(username);
+            if(exists) {
+                messageLabel.setText("Username đã tồn tại!");
+            } else {
+                messageLabel.setText("Đăng ký thất bại! Kiểm tra DB hoặc tên cột.");
+            }
         }
     }
+
+    @FXML
+    public void handleBack(ActionEvent actionEvent) {
+        System.out.println("DEBUG: Back button clicked");
+        try {
+            Stage currentStage = (Stage) usernameField.getScene().getWindow();
+            currentStage.close();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ud_quizzi/view/AdminScreen.fxml"));
+            Parent root = loader.load();
+            Stage adminStage = new Stage();
+            adminStage.setScene(new Scene(root));
+            adminStage.setTitle("Admin Screen");
+            adminStage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            messageLabel.setText("Lỗi load AdminScreen: " + e.getMessage());
+        }
+    }
+
 
     private void clearFields() {
         usernameField.clear();
@@ -91,26 +125,6 @@ public class RegisterController {
         fullNameField.clear();
         emailField.clear();
         phoneField.clear();
-        roleChoiceBox.setValue("user");
-    }
-
-    @FXML
-    public void handleBack(ActionEvent actionEvent) {
-        try {
-            // 1️⃣ Khởi tạo FXMLLoader và load FXML của màn hình chính
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ud_quizzi/view/LoginScreen.fxml"));
-            Parent root = loader.load();
-
-            // 2️⃣ Lấy stage hiện tại
-            Stage stage = (Stage) usernameField.getScene().getWindow();
-
-            // 3️⃣ Thay scene mới và hiển thị
-            stage.setScene(new Scene(root));
-            stage.setTitle("Register Screen");
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        roleChoiceBox.setValue("teacher");
     }
 }

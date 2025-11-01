@@ -1,7 +1,7 @@
 package com.example.ud_quizzi.main;
 
 import com.example.ud_quizzi.dao.DatabaseConnection;
-import com.example.ud_quizzi.view.ManageQuestionController;
+import com.example.ud_quizzi.view.ManageExamController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,17 +10,17 @@ import javafx.stage.Stage;
 
 import java.sql.Connection;
 
-public class ManageQuestionViewDemo extends Application {
+public class ManageExamViewDemo extends Application {
 
     @Override
     public void start(Stage primaryStage) {
         try {
             // 1️⃣ Load FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ud_quizzi/view/ManageQuestionScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ud_quizzi/view/ManageExamScreen.fxml"));
             Parent root = loader.load();
 
             // 2️⃣ Lấy controller
-            ManageQuestionController controller = loader.getController();
+            ManageExamController controller = loader.getController();
 
             // 3️⃣ Lấy Connection và truyền vào controller
             Connection conn = DatabaseConnection.getConnection();
@@ -29,7 +29,7 @@ public class ManageQuestionViewDemo extends Application {
             // 4️⃣ Hiển thị giao diện
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
-            primaryStage.setTitle("Manage Questions");
+            primaryStage.setTitle("Manage Exams");
             primaryStage.show();
 
         } catch (Exception e) {

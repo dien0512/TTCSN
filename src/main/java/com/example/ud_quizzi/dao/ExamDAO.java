@@ -1,13 +1,14 @@
 package com.example.ud_quizzi.dao;
 
 import com.example.ud_quizzi.model.Exam;
+import com.example.ud_quizzi.model.Question;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ExamDAO {
-    private final Connection conn;
+    private static Connection conn = null;
 
     public ExamDAO(Connection conn) {
         this.conn = conn;
@@ -24,7 +25,7 @@ public class ExamDAO {
         }
     }
 
-    public List<Exam> getAll() throws SQLException {
+    public static List<Exam> getAll() throws SQLException {
         List<Exam> list = new ArrayList<>();
         String sql = "SELECT * FROM Exams";
         try (Statement st = conn.createStatement();
@@ -52,7 +53,7 @@ public class ExamDAO {
         }
     }
 
-    private Exam map(ResultSet rs) throws SQLException {
+    private static Exam map(ResultSet rs) throws SQLException {
         return new Exam(
                 rs.getInt("exam_id"),
                 rs.getString("exam_name"),
@@ -61,4 +62,9 @@ public class ExamDAO {
                 rs.getInt("test_time")
         );
     }
+
+    public Connection getConnection() {
+        return this.conn;
+    }
+
 }

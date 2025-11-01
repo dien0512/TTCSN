@@ -1,5 +1,6 @@
 package com.example.ud_quizzi.dao;
 
+import com.example.ud_quizzi.model.Question;
 import com.example.ud_quizzi.model.User;
 
 import java.sql.*;
@@ -88,6 +89,14 @@ public class UserDAO {
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
             return rs.next();
+        }
+    }
+
+    public boolean deleteById(int id) throws SQLException {
+        String sql = "DELETE FROM Users WHERE user_id=?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            return ps.executeUpdate() > 0;
         }
     }
 }

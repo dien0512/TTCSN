@@ -1,3 +1,4 @@
+
 package com.example.ud_quizzi.controller;
 
 import com.example.ud_quizzi.dao.QuestionDAO;
@@ -53,7 +54,7 @@ public class QuestionController {
         }
     }
     public boolean addQuestion(String content, String optionA, String optionB,
-                                String optionC, String optionD, String answer) {
+                               String optionC, String optionD, String answer) {
         try {
             if (questionExists(content,answer)) {
                 return false; // question da ton tai
