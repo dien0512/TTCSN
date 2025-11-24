@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.ud_quizzi.view.StudentController"
+            prefWidth="850" prefHeight="550"
+            style="-fx-background-color: linear-gradient(to bottom right, #f0f8ff, #e6f0ff);">
+
+    <VBox spacing="20" alignment="TOP_CENTER"
+          AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20"
+          AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20">
+
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label fx:id="welcomeLabel" text="Xin chào, Sinh viên!"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Đăng xuất" onAction="#handleLogout"
+                    style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        </HBox>
+
+        <Label text="DANH SÁCH ĐỀ THI" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1E90FF;"/>
+
+        <TableView fx:id="tableExams" VBox.vgrow="ALWAYS"
+                   style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #87CEFA;">
+            <columns>
+                <TableColumn fx:id="colExamName" text="Tên đề thi" prefWidth="350"/>
+                <TableColumn fx:id="colCreatedBy" text="Giáo viên tạo" prefWidth="150"/>
+                <TableColumn fx:id="colTestTime" text="Thời gian (phút)" prefWidth="120"/>
+                <TableColumn fx:id="colDate" text="Ngày tạo" prefWidth="150"/>
+            </columns>
+        </TableView>
+
+        <Button text="Xem chi tiết &amp; Vào thi" onAction="#handleViewExamDetail"
+                prefWidth="200" prefHeight="40"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 20;"/>
+    </VBox>
+</AnchorPane>

@@ -1,6 +1,6 @@
 package com.example.ud_quizzi.main;
 
-import com.example.ud_quizzi.dao.DatabaseConection;
+import com.example.ud_quizzi.dao.DatabaseConnection;
 import com.example.ud_quizzi.view.ManageQuestionController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +23,7 @@ public class ManageQuestionViewDemo extends Application {
             ManageQuestionController controller = loader.getController();
 
             // 3️⃣ Lấy Connection và truyền vào controller
-            Connection conn = DatabaseConection.getConnection();
+            Connection conn = DatabaseConnection.getConnection();
             controller.setConnection(conn);
 
             // 4️⃣ Hiển thị giao diện

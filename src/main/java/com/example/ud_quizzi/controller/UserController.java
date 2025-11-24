@@ -59,6 +59,16 @@ public class UserController {
         }
     }
 
+    // Thêm phương thức này vào trong class UserController
+    public boolean deleteUser(int id) {
+        try {
+            return userDAO.deleteById(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     // Kiem tra xem username da ton tai chua
     public boolean usernameExists(String username) {
         try {

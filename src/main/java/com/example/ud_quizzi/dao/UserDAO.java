@@ -69,6 +69,15 @@ public class UserDAO {
         }
     }
 
+    // Thêm phương thức này vào trong class UserDAO
+    public boolean deleteById(int id) throws SQLException {
+        String sql = "DELETE FROM Users WHERE user_id=?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            return ps.executeUpdate() > 0;
+        }
+    }
+
     private User map(ResultSet rs) throws SQLException {
         return new User(
                 rs.getInt("user_id"),
