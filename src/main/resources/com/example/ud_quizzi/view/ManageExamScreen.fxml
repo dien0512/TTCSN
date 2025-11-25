@@ -5,8 +5,8 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.ud_quizzi.view.ManageQuestionController"
-            prefWidth="930" prefHeight="550"
+            fx:controller="com.example.ud_quizzi.view.ManageExamController"
+            prefWidth="780" prefHeight="550"
             style="-fx-background-color: linear-gradient(to bottom right, #f0f8ff, #e6f0ff);">
 
     <VBox spacing="20" alignment="TOP_CENTER"
@@ -14,16 +14,16 @@
           AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20">
 
         <!-- Tiêu đề -->
-        <Label text="QUẢN LÍ CÂU HỎI"
+        <Label text="QUẢN LÍ ĐỀ THI"
                style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #1E90FF;"/>
 
         <!-- Bảng dữ liệu -->
-        <TableView fx:id="tableQuestions" prefHeight="400" prefWidth="960"
+        <TableView fx:id="tableExams" prefHeight="400" prefWidth="960"
                    style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #87CEFA;">
             <columns>
-                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
-                <TableColumn fx:id="colContent" text="Content" prefWidth="650"/>
-                <TableColumn fx:id="colAnswer" text="Answer" prefWidth="150"/>
+                <TableColumn fx:id="colName" text="Tên đề thi" prefWidth="450"/>
+                <TableColumn fx:id="colDate" text="Ngày tạo" prefWidth="150"/>
+                <TableColumn fx:id="colTime" text="Thời gian làm bài" prefWidth="150"/>
             </columns>
         </TableView>
 

@@ -1,5 +1,6 @@
 package com.example.ud_quizzi.view;
 
+<<<<<<< HEAD
 import com.example.ud_quizzi.controller.ExamController;
 import com.example.ud_quizzi.dao.DatabaseConnection;
 import com.example.ud_quizzi.model.Exam;
@@ -110,4 +111,7 @@ public class StudentController {
         alert.setContentText(msg);
         alert.show();
     }
+=======
+public class StudentController {
+>>>>>>> f23e1b2ade4e16d34a125143caa79db8bc16f6d6
 }

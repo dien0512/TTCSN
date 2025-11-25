@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
@@ -39,3 +40,29 @@
                 style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 20;"/>
     </VBox>
 </AnchorPane>
+=======
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+
+<!--<?import javafx.scene.control.*?>-->
+<!--<?import javafx.scene.layout.*?>-->
+<!--<?import javafx.geometry.*?>-->
+
+<!--<VBox xmlns="http://javafx.com/javafx/17"-->
+<!--      xmlns:fx="http://javafx.com/fxml/1"-->
+<!--      fx:controller="com.example.ud_quizzi.view.StudentController"-->
+<!--      spacing="20" alignment="CENTER">-->
+
+<!--    <Label text="TRANG CHỦ HỌC SINH" style="-fx-font-size: 24px; -fx-font-weight: bold;" />-->
+
+<!--    <VBox spacing="15" alignment="CENTER">-->
+<!--        <Button text="Quản lí câu hỏi" onAction="#handleManageQuestions" prefWidth="200"/>-->
+<!--        <Button text="Quản lí đề thi" onAction="#handleManageExams" prefWidth="200"/>-->
+<!--        <Button text="Quản lí kết quả" onAction="#handleManageResults" prefWidth="200"/>-->
+<!--        <Button text="Đăng xuất" onAction="#handleLogout" prefWidth="200"/>-->
+<!--    </VBox>-->
+
+<!--    <padding>-->
+<!--        <Insets top="20" right="20" bottom="20" left="20"/>-->
+<!--    </padding>-->
+<!--</VBox>-->
+>>>>>>> f23e1b2ade4e16d34a125143caa79db8bc16f6d6

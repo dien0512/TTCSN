@@ -3,7 +3,10 @@ package com.example.ud_quizzi.view;
 import com.example.ud_quizzi.controller.UserController;
 import com.example.ud_quizzi.dao.DatabaseConnection;
 import com.example.ud_quizzi.model.User;
+<<<<<<< HEAD
 
+=======
+>>>>>>> f23e1b2ade4e16d34a125143caa79db8bc16f6d6
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,14 +32,26 @@ public class LoginController {
     @FXML
     private void initialize() {
         try {
+<<<<<<< HEAD
             // Load hình ảnh (đảm bảo thư mục resources/images có file)
+=======
+>>>>>>> f23e1b2ade4e16d34a125143caa79db8bc16f6d6
             URL bgUrl = getClass().getResource("/images/backgroundLogin.png");
             URL sideUrl = getClass().getResource("/images/loginImage.png");
 
             if (bgUrl != null) backgroundImage.setImage(new Image(bgUrl.toExternalForm()));
+<<<<<<< HEAD
             if (sideUrl != null) sideImage.setImage(new Image(sideUrl.toExternalForm()));
         } catch (Exception e) {
             System.out.println("Lỗi load ảnh: " + e.getMessage());
+=======
+            else System.out.println("Không tìm thấy backgroundLogin.png");
+
+            if (sideUrl != null) sideImage.setImage(new Image(sideUrl.toExternalForm()));
+            else System.out.println("Không tìm thấy loginImage.png");
+        } catch (Exception e) {
+            System.out.println("Lỗi khi load hình ảnh: " + e.getMessage());
+>>>>>>> f23e1b2ade4e16d34a125143caa79db8bc16f6d6
         }
     }
 
@@ -51,6 +66,7 @@ public class LoginController {
             return;
         }
 
+<<<<<<< HEAD
         // Kết nối DB (Đã sửa lỗi import)
         Connection conn = DatabaseConnection.getConnection();
         if (conn == null) {
@@ -121,3 +137,54 @@ public class LoginController {
         }
     }
 }
+=======
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            if (conn == null) {
+                messageLabel.setStyle("-fx-text-fill: red;");
+                messageLabel.setText("Không thể kết nối database!");
+                return;
+            }
+
+            UserController userController = new UserController(conn);
+            User user = userController.login(username, password);
+
+            if (user != null) {
+                messageLabel.setStyle("-fx-text-fill: green;");
+                messageLabel.setText("Đăng nhập thành công!");
+
+                // Chọn FXML theo role
+                String fxmlPath;
+                switch (user.getRole()) {
+                    case "teacher" -> fxmlPath = "/com/example/ud_quizzi/view/TeacherScreen.fxml";
+                    case "student" -> fxmlPath = "/com/example/ud_quizzi/view/StudentScreen.fxml";
+                    default -> fxmlPath = "/com/example/ud_quizzi/view/AdminScreen.fxml";
+                }
+
+                try {
+                    Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
+                    Stage stage = (Stage) usernameField.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.sizeToScene();
+                    stage.centerOnScreen(); // căn giữa màn hình
+                    stage.setTitle("Dashboard - " + user.getRole());
+                    stage.show();
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    messageLabel.setStyle("-fx-text-fill: red;");
+                    messageLabel.setText("Lỗi khi mở màn hình chính!");
+                }
+
+            } else {
+                messageLabel.setStyle("-fx-text-fill: red;");
+                messageLabel.setText("Sai username hoặc password!");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            messageLabel.setStyle("-fx-text-fill: red;");
+            messageLabel.setText("Lỗi khi kết nối database!");
+        }
+    }
+}
+>>>>>>> f23e1b2ade4e16d34a125143caa79db8bc16f6d6
