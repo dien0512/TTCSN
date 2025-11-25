@@ -16,17 +16,16 @@ public class TeacherController {
 
     private QuestionController questionController;
 
-    private static final String DB_HOST = "LAPTOP";
-    private static final String DB_INSTANCE = "MSSQLSERVER01";
+    private static final String DB_HOST = "localhost";
     private static final String DB_NAME = "QuizziDB";
     private static final String DB_USER = "sa";
-    private static final String DB_PASSWORD = "@Nhd05122005";
+    private static final String DB_PASSWORD = "123456";
 
     @FXML
     private void initialize() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String url = "jdbc:sqlserver://" + DB_HOST + "\\" + DB_INSTANCE +
+            String url = "jdbc:sqlserver://" + DB_HOST + ":1433" +
                     ";databaseName=" + DB_NAME +
                     ";encrypt=true;trustServerCertificate=true;";
             Connection conn = DriverManager.getConnection(url, DB_USER, DB_PASSWORD);

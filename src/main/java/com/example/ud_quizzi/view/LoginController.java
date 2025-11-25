@@ -51,7 +51,7 @@ public class LoginController {
             return;
         }
 
-        // ✅ Kết nối DB (Đã sửa lỗi import)
+        // Kết nối DB (Đã sửa lỗi import)
         Connection conn = DatabaseConnection.getConnection();
         if (conn == null) {
             messageLabel.setStyle("-fx-text-fill: red;");
