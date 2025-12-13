@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.example.ud_quizzi.view.RegisterController"
+           prefWidth="500" prefHeight="550">
+
+    <!-- Background Image phủ kín -->
+    <ImageView fx:id="registerForm" preserveRatio="false" pickOnBounds="true"
+               fitWidth="500" fitHeight="550"/>
+
+    <!-- Form overlay (nền trong suốt) -->
+    <VBox spacing="20" alignment="CENTER"
+          style="-fx-background-color: transparent; -fx-padding: 30;">
+
+        <!-- Title -->
+        <Label text="ĐĂNG KÍ TÀI KHOẢN"
+               style="-fx-font-size: 28px; -fx-font-weight: bold;
+                      -fx-text-fill: cyan;
+                      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 4, 0, 0, 2);"/>
+
+        <!-- GridPane for fields -->
+        <GridPane hgap="10" vgap="15" alignment="CENTER">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" minWidth="100"/>
+                <ColumnConstraints halignment="LEFT" minWidth="200" hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <!-- Labels & Fields -->
+            <Label text="Username:" GridPane.rowIndex="0" GridPane.columnIndex="0"
+                   style="-fx-font-weight: bold; -fx-text-fill: cyan;
+                          -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 2,0,0,1);"/>
+            <TextField fx:id="usernameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Password:" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                   style="-fx-font-weight: bold; -fx-text-fill: cyan;
+                          -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 2,0,0,1);"/>
+            <PasswordField fx:id="passwordField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Full Name:" GridPane.rowIndex="2" GridPane.columnIndex="0"
+                   style="-fx-font-weight: bold; -fx-text-fill: cyan;
+                          -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 2,0,0,1);"/>
+            <TextField fx:id="fullNameField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Email:" GridPane.rowIndex="3" GridPane.columnIndex="0"
+                   style="-fx-font-weight: bold; -fx-text-fill: cyan;
+                          -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 2,0,0,1);"/>
+            <TextField fx:id="emailField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <Label text="Phone:" GridPane.rowIndex="4" GridPane.columnIndex="0"
+                   style="-fx-font-weight: bold; -fx-text-fill: cyan;
+                          -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 2,0,0,1);"/>
+            <TextField fx:id="phoneField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+            <Label text="Role:" GridPane.rowIndex="5" GridPane.columnIndex="0"
+                   style="-fx-font-weight: bold; -fx-text-fill: cyan;
+                          -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 2,0,0,1);"/>
+            <ChoiceBox fx:id="roleChoiceBox" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+            <!-- Buttons -->
+            <HBox spacing="20" alignment="CENTER" GridPane.rowIndex="6" GridPane.columnIndex="0" GridPane.columnSpan="2">
+                <Button fx:id="btnRegister" text="Thêm" prefWidth="120"
+                        onAction="#handleRegister"
+                        style="-fx-background-color: #e74c3c; -fx-text-fill: white;
+               -fx-font-weight: bold; -fx-background-radius: 5;"/>
+
+                <Button fx:id="btnBack" text="Trở lại" prefWidth="120"
+                        onAction="#handleBack"
+                        style="-fx-background-color: #3498db; -fx-text-fill: white;
+               -fx-font-weight: bold; -fx-background-radius: 5;"/>
+
+            </HBox>
+
+            <!-- Message Label -->
+            <Label fx:id="messageLabel" GridPane.rowIndex="7" GridPane.columnIndex="0" GridPane.columnSpan="2"
+                   GridPane.halignment="CENTER"
+                   style="-fx-text-fill: cyan; -fx-font-weight: bold;
+                          -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 2,0,0,1);"/>
+        </GridPane>
+    </VBox>
+</StackPane>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.ud_quizzi.view.TeacherController"
+      spacing="30" alignment="CENTER"
+      style="-fx-background-color: linear-gradient(to bottom right, #f0f4ff, #d9e4ff);">
+
+    <!-- Tiêu đề -->
+    <Label text="TRANG CHỦ GIÁO VIÊN"
+           style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2a3f5f;"
+           effect="$dropShadow">
+        <effect>
+            <DropShadow radius="3" offsetX="2" offsetY="2" color="#888888"/>
+        </effect>
+    </Label>
+
+    <!-- Menu nút -->
+    <VBox spacing="20" alignment="CENTER">
+        <Button text="Quản lí câu hỏi" onAction="#handleManageQuestions" prefWidth="220"
+                style="-fx-background-color: #4a90e2; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;">
+            <VBox.margin>
+                <Insets top="5" bottom="5"/>
+            </VBox.margin>
+        </Button>
+
+        <Button text="Quản lí đề thi" onAction="#handleManageExams" prefWidth="220"
+                style="-fx-background-color: #50e3c2; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;">
+            <VBox.margin>
+                <Insets top="5" bottom="5"/>
+            </VBox.margin>
+        </Button>
+
+        <Button text="Quản lí kết quả" onAction="#handleManageResults" prefWidth="220"
+                style="-fx-background-color: #f5a623; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;">
+            <VBox.margin>
+                <Insets top="5" bottom="5"/>
+            </VBox.margin>
+        </Button>
+
+        <Button text="Đăng xuất" onAction="#handleLogout" prefWidth="220"
+                style="-fx-background-color: #d0021b; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;">
+            <VBox.margin>
+                <Insets top="5" bottom="5"/>
+            </VBox.margin>
+        </Button>
+    </VBox>
+
+    <padding>
+        <Insets top="40" right="40" bottom="40" left="40"/>
+    </padding>
+</VBox>

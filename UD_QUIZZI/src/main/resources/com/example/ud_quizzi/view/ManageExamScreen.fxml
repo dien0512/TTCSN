@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.ud_quizzi.view.ManageExamController"
+            prefWidth="780" prefHeight="550"
+            style="-fx-background-color: linear-gradient(to bottom right, #f0f8ff, #e6f0ff);">
+
+    <VBox spacing="20" alignment="TOP_CENTER"
+          AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20"
+          AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20">
+
+        <!-- Tiêu đề -->
+        <Label text="QUẢN LÍ ĐỀ THI"
+               style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #1E90FF;"/>
+
+        <!-- Bảng dữ liệu -->
+        <TableView fx:id="tableExams" prefHeight="400" prefWidth="960"
+                   style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #87CEFA;">
+            <columns>
+                <TableColumn fx:id="colExamID" text="STT" prefWidth="30"/>
+                <TableColumn fx:id="colName" text="Tên đề thi" prefWidth="280"/>
+                <TableColumn fx:id="colDate" text="Ngày tạo" prefWidth="150"/>
+                <TableColumn fx:id="colTime" text="Thời gian làm bài" prefWidth="150"/>
+                <TableColumn fx:id="colByName" text="Người tạo" prefWidth="150"/>
+            </columns>
+        </TableView>
+
+        <!-- Nút chức năng -->
+        <HBox spacing="25" alignment="CENTER">
+            <Button text="➕ Thêm" onAction="#handleAdd" prefWidth="140" prefHeight="40"
+                    style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;
+                           -fx-background-radius: 10; -fx-font-size: 14px;"/>
+
+            <Button text="❌ Xóa" onAction="#handleDelete" prefWidth="140" prefHeight="40"
+                    style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-weight: bold;
+                           -fx-background-radius: 10; -fx-font-size: 14px;"/>
+
+            <Button text="⬅ Trở lại" onAction="#handleBack" prefWidth="140" prefHeight="40"
+                    style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold;
+                           -fx-background-radius: 10; -fx-font-size: 14px;"/>
+        </HBox>
+    </VBox>
+</AnchorPane>
