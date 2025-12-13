@@ -17,6 +17,7 @@ import java.sql.DriverManager;
 
 public class RegisterController {
 
+    private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
     @FXML private TextField fullNameField;
@@ -25,7 +26,7 @@ public class RegisterController {
     @FXML private ChoiceBox<String> roleChoiceBox;
     @FXML private Label messageLabel;
 
-    @FXML private ImageView registerForm; // fix fx:id match FXML
+    @FXML private ImageView registerForm;
 
     private UserController userController;
 
@@ -38,7 +39,7 @@ public class RegisterController {
     @FXML
     private void initialize() {
         // Init ChoiceBox
-        roleChoiceBox.getItems().addAll("teacher", "student", "admin");
+        roleChoiceBox.getItems().addAll("teacher", "student");
         roleChoiceBox.setValue("teacher");
 
         // Kết nối DB
@@ -77,9 +78,28 @@ public class RegisterController {
         String phone = phoneField.getText().trim();
         String role = roleChoiceBox.getValue();
 
-        if(username.isEmpty() || password.isEmpty() || fullName.isEmpty()
+        // 1. Kiểm tra các trường không được để trống
+        if (username.isEmpty() || password.isEmpty() || fullName.isEmpty()
                 || email.isEmpty() || phone.isEmpty()) {
             messageLabel.setText("Vui lòng điền đầy đủ thông tin!");
+            return;
+        }
+
+        // 2. Validate email
+        if (!email.matches(EMAIL_REGEX)) {
+            messageLabel.setText("Email không hợp lệ!");
+            return;
+        }
+
+        // 3. Validate phone (chỉ số, độ dài 9–11)
+        if (!phone.matches("\\d{9,11}")) {
+            messageLabel.setText("Số điện thoại không hợp lệ!");
+            return;
+        }
+
+        // 4. Check role
+        if (role == null || role.isEmpty()) {
+            messageLabel.setText("Vui lòng chọn quyền người dùng!");
             return;
         }
 
@@ -100,22 +120,8 @@ public class RegisterController {
 
     @FXML
     public void handleBack(ActionEvent actionEvent) {
-        System.out.println("DEBUG: Back button clicked");
-        try {
-            Stage currentStage = (Stage) usernameField.getScene().getWindow();
-            currentStage.close();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ud_quizzi/view/AdminScreen.fxml"));
-            Parent root = loader.load();
-            Stage adminStage = new Stage();
-            adminStage.setScene(new Scene(root));
-            adminStage.setTitle("Admin Screen");
-            adminStage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            messageLabel.setText("Lỗi load AdminScreen: " + e.getMessage());
-        }
+        Stage stage = (Stage) usernameField.getScene().getWindow();
+        stage.close();
     }
 
 

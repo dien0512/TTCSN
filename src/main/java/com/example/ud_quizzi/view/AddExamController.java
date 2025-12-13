@@ -51,6 +51,12 @@ public class AddExamController {
                 return;
             }
 
+            // Kiểm tra > 0
+            if (testTime <= 0) {
+                messageLabel.setText("Thời gian làm bài phải lớn hơn 0!");
+                return;
+            }
+
             // Tạo Exam và lưu vào DB
             Exam exam = new Exam(0, name, createdBy, new java.util.Date(), testTime);
             boolean examAdded = examController.addExam(exam);

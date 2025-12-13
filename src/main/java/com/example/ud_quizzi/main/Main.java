@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class LoginViewDemo extends Application {
+public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
@@ -24,6 +24,7 @@ public class LoginViewDemo extends Application {
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Quizzi Login");
+            primaryStage.centerOnScreen();
             primaryStage.show();
 
         } catch (Exception e) {

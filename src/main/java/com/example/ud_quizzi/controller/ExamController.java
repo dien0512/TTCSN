@@ -5,6 +5,7 @@ import com.example.ud_quizzi.model.Exam;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -43,9 +44,10 @@ public class ExamController {
             return examDAO.getAll();
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            return new ArrayList<>();
         }
     }
+
 
     // ✅ Lấy đề thi theo ID
     public Exam getExamById(int id) {
